@@ -25,7 +25,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-mongoose.connect("mongodb+srv://aliff:5whWI5rdLcvderDR@cluster0-1hzy1.gcp.mongodb.net/test", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost:27017/data", { useNewUrlParser: true });
 mongoose.set("useCreateIndex", true);
 // var d = new Date();
 
