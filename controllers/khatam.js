@@ -17,16 +17,18 @@ exports.getKhatam = (req, res) => {
   });
 };
 
-exports.postKhatam = (req, res) => {
+exports.test = (req, res) => {
   const submittedSecret = req.body;
   Data.findById("5ea063041ec75cf444dba20f", function (err, foundUser) {
     if (err) {
       console.log(err);
     } else {
       if (foundUser) {
+        console.log(submittedSecret);
+
         foundUser.data = submittedSecret;
         foundUser.save(function () {
-          res.redirect("/khatam/khatam");
+          res.redirect("/khatam");
         });
       }
     }

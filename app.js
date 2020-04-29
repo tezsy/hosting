@@ -7,10 +7,12 @@ const app = express();
 const morgan = require("morgan");
 const khatam = require("./routes/khatam");
 const projects20 = require("./routes/project20");
+const Data = require("./models/khatam");
+const { test } = require("./controllers/khatam");
 
 app.use("/khatam", khatam);
-app.use("/20projects", projects20);
-
+app.use("/20-projects", projects20);
+app.post("/khatam", test);
 app.use(express.static("public"));
 
 app.set("view engine", "ejs");

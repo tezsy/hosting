@@ -3,7 +3,7 @@ const router = express.Router();
 const { getKhatam, postKhatam, law } = require("../controllers/khatam");
 
 router.get("/", getKhatam);
-router.post("/", postKhatam);
 router.get("/ciknis_pipau", law);
 
+// router.post("/", postKhatam);
 module.exports = router;
