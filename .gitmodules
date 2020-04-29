@@ -1,0 +1,3 @@
+[submodule "public/20-projects"]
+	path = public/20-projects
+	url = https://github.com/tezsy/20-projects.git
