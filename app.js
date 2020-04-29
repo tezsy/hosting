@@ -8,6 +8,7 @@ const morgan = require("morgan");
 const khatam = require("./routes/khatam");
 const projects20 = require("./routes/project20");
 const Data = require("./models/khatam");
+const { test } = require("./controllers/khatam");
 
 app.use("/khatam", khatam);
 app.use("/20-projects", projects20);
@@ -18,22 +19,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.post("/khatam", (req, res) => {
-  console.log(req.body);
-  const submittedSecret = req.body;
-  Data.findById("5ea063041ec75cf444dba20f", function (err, foundUser) {
-    if (err) {
-      console.log(err);
-    } else {
-      if (foundUser) {
-        foundUser.data = submittedSecret;
-        foundUser.save(function () {
-          res.redirect("/khatam");
-        });
-      }
-    }
-  });
-});
+app.post("/khatam", test);
 
 // *database
 mongoose.connect("mongodb://localhost:27017/data", {
