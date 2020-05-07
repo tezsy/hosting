@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/solat.css">
+    <title>Solat</title>
+</head>
+
+<body>
+    <div class="h-100 row align-items-center" style="background:#C4E1E7">
+        <div class="col text-center">
+            <form action="/solat" method="post">
+                <button class="btn btn-lg btn-info">SUBMIT</button>
+            </form>
+            <a href="/solat/statistics">see stats</a>
+            <h4 class="mt-5"><%= solat[0].subuh %></h4>
+            <h4><%= solat[0].zohor %></h4>
+            <h4><%= solat[0].asar %></h4>
+            <h4><%= solat[0].maghrib %></h4>
+            <h4><%= solat[0].isyak %></h4>
+        </div>
+    </div>
+
+</body>
+
+</html>
