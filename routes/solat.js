@@ -41,12 +41,12 @@ router.get("/statistics", async (req, res) => {
 		subuh / total,
 		zohor / total,
 		asar / total,
-		isyak / total,
 		maghrib / total,
+		isyak / total,
 	];
 
 	function getSolat(s) {
-		if (time > s.subuh && time < s.syuruk) {
+		if (time > s.subuh && time < s.zohor) {
 			return 1;
 		} else if (time > s.zohor && time < s.asar) {
 			return 2;
@@ -63,6 +63,8 @@ router.get("/statistics", async (req, res) => {
 	solat.forEach((s) => {
 		if (s.date == today) {
 			const now = getSolat(s);
+			console.log(now);
+
 			daily =
 				(s.doneZohor + s.doneAsar + s.doneMaghrib + s.doneSubuh + s.doneIsyak) /
 				now;

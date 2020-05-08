@@ -15,11 +15,11 @@
                 <button class="btn btn-lg btn-info">SUBMIT</button>
             </form>
             <a href="/solat/statistics">see stats</a>
-            <h4 class="mt-5"><%= solat[0].subuh %></h4>
-            <h4><%= solat[0].zohor %></h4>
-            <h4><%= solat[0].asar %></h4>
-            <h4><%= solat[0].maghrib %></h4>
-            <h4><%= solat[0].isyak %></h4>
+            <h4 class="mt-5"><%= solat[0].subuh || null %></h4>
+            <h4><%= solat[0].zohor|| null %></h4>
+            <h4><%= solat[0].asar|| null %></h4>
+            <h4><%= solat[0].maghrib|| null %></h4>
+            <h4><%= solat[0].isyak|| null %></h4>
         </div>
     </div>
 
