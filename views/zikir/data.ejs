@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <title>Zikir Data</title>
+</head>
+
+<body style="background:#C4E1E7">
+  <div class="vh-100  align-items-center container pt-5">
+    <div class="col-12 text-center">
+
+      <h3 class="m-5">Your Data</h3>
+
+      <%  data.forEach(element => { %>
+      <h3> <%= element.date %> = <%= element.zikirDone %> </h3>
+      <% });%>
+
+    </div>
+
+  </div>
+
+
+
+</body>
+
+</html>

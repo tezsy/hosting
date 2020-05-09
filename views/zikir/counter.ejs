@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+    .myButton {
+      box-shadow: 0px 10px 14px -7px #276873;
+      background: linear-gradient(to bottom, #599bb3 5%, #408c99 100%);
+      background-color: #599bb3;
+      border-radius: 18px;
+      border: 6px solid #29668f;
+      display: inline-block;
+      cursor: pointer;
+      color: #ffffff;
+      font-family: Arial;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 26px 57px;
+      text-decoration: none;
+      text-shadow: 0px 1px 0px #3d768a;
+    }
+
+    .myButton:hover {
+      background: linear-gradient(to bottom, #408c99 5%, #599bb3 100%);
+      background-color: #408c99;
+    }
+
+    .myButton:active {
+      position: relative;
+      top: 1px;
+    }
+  </style>
+  <title>Zikir</title>
+</head>
+
+<body style="background:#C4E1E7">
+  <div class="vh-100  align-items-center container">
+    <div class="col-12 text-center">
+
+      <div class="mt-5 mb-5" align="center">
+
+        <span id="output" style="font-size: xxx-large;">0</span>
+        <br>
+
+
+        <a onclick="Count()" href="#" class="myButton">Count me</a>
+        <br>
+
+
+      </div>
+
+
+      <form action=<%="/zikir/"+ name +"/counter" %> method="post">
+        <input name="data" id="output2" value="0" hidden type="text">
+        <button class="btn btn-lg btn-outline-success mt-5" type="submit">submit</button><br>
+
+      </form>
+
+      <a class="btn btn-outline-primary p-2 m-2" href=<%="/zikir/"+ name + "/data" %>>see pasts data</a>
+      <a class="btn btn-outline-primary p-2 m-2" href=<%="/zikir/"+ name + "/counter/manual" %>>enter manually</a>
+      <br>
+      <button class="btn btn-outline-danger" onclick="zero()">Zero Me!</button>
+      <script>
+        let i = 0
+        let j = 0
+        function Count() {
+          document.getElementById("output").innerHTML = i++ + 1;
+          document.getElementById("output2").value = j++ + 1;
+        }
+
+        function zero() {
+
+          document.getElementById("output").innerHTML = 0;
+          document.getElementById("output2").value = 0;
+          i = 0;
+          j = 0;
+        }
+      </script>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

@@ -9,7 +9,8 @@ const morgan = require("morgan");
 const khatam = require("./routes/khatam");
 const projects20 = require("./routes/project20");
 const solat = require("./routes/solat");
-const users = require("./routes/users");
+
+const zikir = require("./routes/zikir");
 
 const cors = require("cors");
 
@@ -40,7 +41,8 @@ app.get("/", function (req, res) {
 app.use("/khatam", khatam);
 app.use("/20-projects", projects20);
 app.use("/solat", solat);
-app.use("/users", users);
+
+app.use("/zikir", zikir);
 
 app.listen(3000, function () {
 	console.log("Server started on port 3000.");
