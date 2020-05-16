@@ -79,3 +79,5 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+proxy = http://192.168.49.1:8000
