@@ -45,6 +45,6 @@ app.use("/questionaire", questionaire);
 
 app.use("/zikir", zikir);
 
-app.listen(3030, function () {
+app.listen(3000, function () {
 	console.log("Server started on port 3030.");
 });
