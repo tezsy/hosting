@@ -12,6 +12,7 @@ const projects20 = require("./routes/project20");
 const solat = require("./routes/solat");
 const zikir = require("./routes/zikir");
 const questionaire = require("./routes/questionaire");
+const webCV = require("./routes/webCV");
 
 const cors = require("cors");
 
@@ -44,9 +45,9 @@ app.use("/khatam", khatam);
 app.use("/20-projects", projects20);
 app.use("/solat", solat);
 app.use("/questionaire", questionaire);
-
+app.use("/webCV", webCV);
 app.use("/zikir", zikir);
 
-app.listen(3000, function () {
+app.listen(3030, function () {
 	console.log("Server started on port 3030.");
 });
