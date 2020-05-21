@@ -1,7 +1,9 @@
 exports.getHome = (req, res) => {
-  res.render("home20projects");
+	res.render("home20projects");
 };
 
-exports.getFormValidator = (req, res) => {
-  res.render("20-projects/formValidator/index");
-};
+// exports.getFormValidator = (req, res) => {
+// 	console.log("haha");
+
+// 	// res.render("shopee/01/index");
+// };

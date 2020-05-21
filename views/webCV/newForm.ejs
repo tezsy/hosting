@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/webCV/style.css" rel="stylesheet" type="text/css">
+
+  <title>New Form</title>
+</head>
+
+<body>
+  <div>
+    <form action="" method="post">
+      <div>
+        basic details
+        <div id="basic">
+          <div>
+
+            <label>name</label>
+            <input id="name" type="text">
+            <label for="">Date of Birth</label>
+            <input type="text">
+            <label for="">Adress</label>
+            <input type="text">
+            <label for="">Phone number</label>
+            <input class="textBox1" type="tel">
+            <label for="">email</label>
+            <input class="textBox3" type="email">
+          </div>
+          <div class="container1">
+            <button type="button" class="add_form_field">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">education</label>
+              <input type="text" name="eduYear1">
+              <input type="text" name="eduTitle1">
+              <input type="text" name="eduPlace1">
+              <input type="text" name="eduNotes1">
+            </div>
+
+          </div>
+          <div class="container2">
+            <button type="button" class="add_form_field2">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">Skill</label>
+              <input type="text" name="skillName1">
+              <input type="text" name="skillValue1">
+            </div>
+
+          </div>
+          <div>
+            <label for="">phone number</label>
+            <input readonly class="textBox2" type="text">
+            <label for="">phone number</label>
+            <input readonly class="textBox4" type="text">
+          </div>
+        </div>
+
+      </div>
+      <div>
+
+        <button type="button" onclick=mf("exp")>test</button>
+        <div style="display: none;" id="exp">
+          <div class="container3">
+            <button type="button" class="add_form_field3">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">Skill</label>
+              <input type="text" name="expYear1">
+              <input type="text" name="expTitle1">
+              <input type="text" name="expPlace1">
+              <input type="text" name="expDetails1">
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <div>
+        language
+        <label class="switch">
+          <input onclick=mf("lang") type="checkbox">
+          <span class="slider round"></span>
+        </label>
+        <div style="display: none;" id="lang">
+          <div class="container4">
+            <div>
+              <label for="">Lang</label>
+              <input type="text" name="langName1">
+              <input type="text" name="langLevel1"><button type="button" class="icon-btn add-btn add_form_field4">
+                <div class="add-icon"></div>
+                <div class="btn-txt">Add</div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" onclick=mf("port")>portfolio</button>
+        <div style="display: none;" id="port">
+          <div class="container5">
+            <button type="button" class="add_form_field5">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">Portfolio</label>
+              <input type="text" name="portName1">
+              <input type="text" name="portDetail1">
+              <input type="text" name="portRef1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" onclick=mf("awards")>Awards</button>
+        <div style="display: none;" id="awards">
+          <div class="container6">
+            <button type="button" class="add_form_field6">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">Awards</label>
+              <input type="text" name="awardYear1">
+              <input type="text" name="awardName1">
+              <input type="text" name="awardDetail1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" onclick=mf("link")>Social</button>
+        <div style="display: none;" id="link">
+          <div>
+            <input value="FB" type="text">
+            <input type="text"><br>
+            <input value="Twitter" type="text">
+            <input type="text"><br>
+            <input value="Instagram" type="text">
+            <input type="text"><br>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" onclick=mf("hobby")>Hobby</button>
+        <div style="display: none;" id="hobby">
+          <div class="container7">
+            <button type="button" class="add_form_field7"> &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">Lang</label>
+              <input type="text" name="hobby1">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" onclick=mf("ref")>Reference</button>
+        <div style="display: none;" id="ref">
+          <div class="container8">
+            <button type="button" class="add_form_field8">Add New Field &nbsp;
+              <span style="font-size:16px; font-weight:bold;">+ </span>
+            </button>
+            <div>
+              <label for="">References</label>
+              <input type="text" name="refName1">
+              <input type="text" name="refTitle1">
+              <input type="text" name="refPhone1">
+              <input type="text" name="refEmail1">
+              <input type="text" name="refDetail1">
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/webCV/jq.js"></script>
+  <script src="">
+
+    $(function () {
+      var $foo = $("#foo");
+      var $bar = $("#bar");
+      function onChange() {
+        $bar.val($foo.val());
+      }
+      $("#foo").change(onChange).keyup(onChange);
+    });
+  </script>
+</body>
+
+
+</html>

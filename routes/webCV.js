@@ -5,12 +5,17 @@ const WebCV = require("../models/webCV");
 router.get("/:orderId/:templateName", async (req, res) => {
 	const webCV = await WebCV.find({ orderId: req.params.orderId });
 	if (webCV.length == 0) {
-		res.send("xdk lsgi jadi bagi form kosong");
 		//send form
+		res.render("webCV/newForm");
 	} else {
+		// res.render("xdk lsgi jadi bagi form kosong");
 		res.send("redirect ke update page");
 		//redirect update page with data
 	}
+});
+
+router.get("/", async (req, res) => {
+	res.render("homeWebCV");
 });
 
 // router.get("/:name", async (req, res) => {
