@@ -16,7 +16,15 @@ $(document).ready(function () {
 		if (x < max_fields) {
 			x++;
 			$(wrapper).append(
-				`<div><label style="visibility: hidden;" for="">education</label><input type="text" name="eduYear${x}"><input type="text" name="eduTitle${x}"><input type="text" name="eduPlace${x}"><input type="text" name="eduNotes${x}"><a href="#" class="delete">Delete</a></div>`
+				`  <div class="email">
+              <label for="">Year</label>
+              <input type="text" name="eduYear${x}">
+              <label for="">Title Name</label>
+              <input type="text" name="eduTitle${x}">
+              <label for="">Institution/School Name</label>
+              <input type="text" name="eduPlace${x}">
+              <label for="">Details</label>
+              <input type="text" name="eduNotes${x}"> <a href="#" class="delete">Delete</a><hr></div>`
 			); //add input box
 		} else {
 			alert("You Reached the limits");
