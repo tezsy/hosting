@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <% console.log(data) %>
   <div>
     <form action=<%= id %> method="post">
       <div class="container">
@@ -18,10 +19,11 @@
           <div class="email">
 
             <label>Name</label>
-            <input id="name" name="name" type="text">
+            <h3><%= JSON.stringify(data)  %></h3>
+            <input value=name="name" type="text">
             <br>
             <label for="">Date of Birth (dd/mm/yyyy)</label>
-            <input name="DOB" type="text">
+            <input name="DOB" value=<%- data.basic.DOB %> type="text">
             <br>
             <label for="">Adress</label>
             <input name="adress" type="text">
@@ -256,7 +258,7 @@
           </div>
         </div>
       </div>
-      <button type="submit">Submit</button>
+      <button type="submit">Update</button>
     </form>
 
 
