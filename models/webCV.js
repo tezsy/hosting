@@ -5,6 +5,7 @@ const webCVScheme = new mongoose.Schema(
 		orderId: { type: String, required: true },
 		templateName: { type: String, required: true },
 		data: Object,
+		image: Array,
 	},
 	{ timestamps: { createdAt: "created_at" } }
 );

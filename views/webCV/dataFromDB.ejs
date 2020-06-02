@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/webCV/style.css" rel="stylesheet" type="text/css">
+
+  <title>New Form</title>
+</head>
+
+<body>
+  <div>
+    <form action=<%= id %> method="post">
+      <div class="container">
+        <h2 class="top">Basic Details</h2>
+        <div id="basic">
+          <div class="email">
+
+            <label class="data-lebel">Name: </label>
+            <p><%= data.basic.name %> </p>
+            <br>
+            <label class="data-lebel" for="">Date of Birth: </label>
+            <p><%= data.basic.DOB %> </p>
+            <br>
+            <label class="data-lebel" for="">Adress: </label>
+            <p><%= data.basic.adress %> </p>
+            <br>
+            <label class="data-lebel" for="">Phone number: </label>
+            <p><%= data.basic.phone %> </p>
+            <br>
+            <label class="data-lebel" for="">Email: </label>
+            <p><%= data.basic.email %> </p>
+          </div>
+          <hr>
+
+          <div class="container1">
+            <h2>Educations</h2>
+
+            <% data.educations.forEach(element => { %>
+            <div class="email">
+              <label class="data-lebel" for="">Year: </label>
+              <p><%= element.year  %> </p>
+              <br>
+              <label class="data-lebel" for="">Title Name: </label>
+              <p><%= element.title  %> </p>
+              <br>
+              <label class="data-lebel" for="">Institution/School Name: </label>
+              <p><%= element.place  %> </p>
+              <br>
+              <label class="data-lebel" for="">Details: </label>
+              <p><%= element.details  %> </p>
+              <br>
+            </div>
+            <hr class="hhr">
+            <% }) %>
+            <hr>
+          </div>
+
+          <div class="container2">
+            <h2>Skills</h2>
+            <% data.skills.forEach(element => { %>
+            <% if (element.name) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Skill name: </label>
+              <p><%= element.name  %> </p>
+              <br>
+              <label class="data-lebel" for="">Skill Level: </label>
+              <p><%= element.value  %> </p>
+              <br>
+            </div>
+            <hr class="hhr">
+            <% } %>
+            <% }) %>
+            <hr>
+          </div>
+
+          <div class="email">
+            <h2>Contacts</h2>
+            <label class="data-lebel" for="">phone number: </label>
+            <p><%= data.basic.phone  %> </p>
+            <br>
+            <label class="data-lebel" for="">Email: </label>
+            <p><%= data.basic.email  %> </p>
+          </div>
+        </div>
+      </div>
+
+
+      <% if (data.experiences[0].year || data.experiences[1].year||data.experiences[2].year||data.experiences[3].year) { %>
+      <div class="container">
+        <div id="exp">
+          <div class="container3">
+            <h2>Experience</h2>
+            <% data.experiences.forEach(element => { %>
+            <% if (element.year) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Year: </label>
+              <p><%= element.year  %> </p>
+              <br>
+              <label class="data-lebel" for="">Title: </label>
+              <p><%= element.title  %> </p>
+              <br>
+              <label class="data-lebel" for="">Company Names/ Place: </label>
+              <p><%= element.place  %> </p>
+              <br>
+              <label class="data-lebel" for="">Details: </label>
+              <p><%= element.details  %> </p>
+            </div>
+            <hr class="hhr">
+            <% } %>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+      <% if (image.length !== 0) { %>
+
+      <div class="container">
+        <div>
+          <div class="container4">
+            <h2>Images and File</h2>
+            <% image.forEach(element => { %>
+            <label class="img-name" for=""><%= element.filename %> </label>
+            <img src=<%= process.env.DOMAIN + element.filename %> alt="">
+
+
+            <% }) %>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+      <% if (data.language[0].language||data.language[1].language||data.language[2].language||data.language[3].language||data.language[4].language) { %>
+
+      <div class="container">
+        <div>
+          <div class="container4">
+            <h2>language</h2>
+            <% data.language.forEach(element => { %>
+            <% if (element.language) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Language</label>
+              <p><%= element.language  %> </p>
+              <br>
+              <label class="data-lebel" for="">Language level </label>
+              <p><%= element.level  %> </p>
+            </div>
+            <hr class="hhr">
+            <% } %>
+
+            <% }) %>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+      <% if (data.portfolios[0].name||data.portfolios[1].name||data.portfolios[2].name||data.portfolios[3].name) { %>
+      <div class="container">
+        <div>
+          <div class="container5">
+            <h2>Portfolio</h2>
+            <% data.portfolios.forEach(element => { %>
+            <% if (element.name) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Portfolio Name: </label>
+              <p><%= element.name  %> </p><br>
+              <label class="data-lebel" for="">Details: </label>
+              <p><%= element.detail  %> </p><br>
+              <label class="data-lebel" for="">Link: </label>
+              <p><%= element.ref  %> </p>
+            </div>
+            <hr class="hhr">
+            <% } %>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+      <% if (data.awards[0].name||data.awards[2].name||data.awards[1].name||data.awards[3].name) { %>
+      <div class="container">
+
+        <div>
+          <div class="container6">
+            <h2>Awards</h2>
+
+            <% data.awards.forEach(element => { %>
+            <% if (element.name) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Year: </label>
+              <p><%= element.year  %> </p>
+              <br>
+              <label class="data-lebel" for="">Name: </label>
+              <p><%= element.name  %> </p><br>
+              <label class="data-lebel" for="">Details: </label>
+              <p><%= element.details  %> </p><br>
+            </div>
+            <hr class="hhr">
+            <% } %>
+            <% }) %>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+      <div class="container">
+
+        <div>
+          <div class="email">
+            <label class="data-lebel" for="">Facebook: </label>
+            <p><%= data.social.fb %> </p><br>
+            <label class="data-lebel" for="">Twitter: </label>
+            <p><%= data.social.twitter %> </p><br>
+            <label class="data-lebel" for="">Instagram: </label>
+            <p><%= data.social.insta %> </p><br>
+            <label class="data-lebel" for="">LinkedIn</label>
+            <p><%= data.social.linkedin %> </p><br>
+            <label class="data-lebel" for="">Github</label>
+            <p><%= data.social.github %> </p><br>
+
+          </div>
+        </div>
+      </div>
+
+
+      <% if (data.hobbies[0].hobby||data.hobbies[1].hobby||data.hobbies[2].hobby) { %>
+      <div class="container">
+
+        <div>
+          <div class="container7">
+            <h2>Hobby</h2>
+            <% data.hobbies.forEach(element => { %>
+            <% if (element.hobby) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Hobby: </label>
+              <p><%= element.hobby %> </p>
+            </div>
+            <hr class="hhr">
+            <% } %>
+
+            <% }) %>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+      <% if (data.references[0].name||data.references[1].name||data.references[2].name) { %>
+      <div class="container">
+
+        <div>
+          <div class="container8">
+            <h2>References</h2>
+
+            <% data.references.forEach(element => { %>
+            <% if (element.name) { %>
+            <div class="email">
+              <label class="data-lebel" for="">Name: </label>
+              <p><%= element.name %> </p><br>
+              <label class="data-lebel" for="">Title: </label>
+              <p><%= element.title %> </p><br>
+              <label class="data-lebel" for="">Phone Number: </label>
+              <p><%= element.phone %> </p><br>
+              <label class="data-lebel" for="">Email: </label>
+              <p><%= element.email %> </p><br>
+              <label class="data-lebel" for="">Relationship/details: </label>
+              <p><%= element.details %> </p>
+            </div>
+            <hr class="hhr">
+            <% } %>
+            <% }) %>
+
+          </div>
+        </div>
+      </div>
+      <% } %>
+
+
+      <button class="bottom" type="submit">Delete data</button>
+    </form>
+
+
+
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/webCV/jq.js"></script>
+  <script src="">
+
+    $(function () {
+      var $foo = $("#foo");
+      var $bar = $("#bar");
+      function onChange() {
+        $bar.val($foo.val());
+      }
+      $("#foo").change(onChange).keyup(onChange);
+    });
+  </script>
+</body>
+
+
+</html>

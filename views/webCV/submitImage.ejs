@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/bs.css">
+  <title>Update Document</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row pt-3">
+      <div class="col-md-6 m-auto pt-3">
+        <h1 class="text-center display-4 my-4">Upload Image</h1>
+        <h4 class="text-center m-4"><%= h4  %> </h4>
+
+        <form action=<%= id %> method="POST" enctype="multipart/form-data">
+          <div class="custom-file mb-3">
+            <input type="file" name="uploadedImages" id="file" class="" multiple>
+
+          </div>
+          <input type="submit" value="Submit" class="btn btn-primary btn-block">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

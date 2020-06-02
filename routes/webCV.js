@@ -1,32 +1,84 @@
 const express = require("express");
 const router = express.Router();
 const WebCV = require("../models/webCV");
+const multer = require("multer");
+const fs = require("fs");
+const { promisify } = require("util");
 
+const unlinkAsync = promisify(fs.unlink);
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, "./images/webCV");
+	},
+	filename: async function (req, file, cb) {
+		var time =
+			new Date().toISOString().replace(/:/g, "-") +
+			file.originalname.replace(/ /g, "");
+		await cb(null, time);
+	},
+});
+const upload = multer({ storage, limits: { fileSize: 1024 * 1024 * 10 } });
+
+router.get("/", async (req, res) => {
+	res.render("homeWebCV");
+}); //TODO edit homecv
+
+//TODO edit cara isi placeholder
 router.get("/:orderId/:templateName", async (req, res) => {
 	const webCV = await WebCV.find({ orderId: req.params.orderId });
-
 	if (webCV.length == 0) {
-		//send form
-		res.render("webCV/newForm", {
-			id: "/webCV/" + req.params.orderId + "/" + req.params.templateName,
-		});
+		if (req.params.orderId.slice(-1) === "1") {
+			res.render("webCV/newForm1", {
+				id: "/webCV/" + req.params.orderId + "/" + req.params.templateName,
+			});
+		} else if (req.params.orderId.slice(-1) === "0") {
+			res.render("webCV/newForm0", {
+				id: "/webCV/" + req.params.orderId + "/" + req.params.templateName,
+			});
+		}
 	} else {
 		// res.render("xdk lsgi jadi bagi form kosong");
-		res.render("webCV/updateForm", {
+		res.render("webCV/dataFromDB", {
 			data: webCV[0].data,
+			image: webCV[0].image,
 			id:
 				"/webCV/" +
 				req.params.orderId +
 				"/" +
 				req.params.templateName +
-				"/update",
+				"/delete",
 		});
 		//redirect update page with data
 	}
 });
 
-router.get("/", async (req, res) => {
-	res.render("homeWebCV");
+router.post(
+	"/:orderId/:templateName/image",
+	upload.array("uploadedImages", 15),
+	async (req, res) => {
+		const webCVarray = await WebCV.find({ orderId: req.params.orderId });
+		const webCV = webCVarray[0];
+		webCV.image = [];
+
+		req.files.forEach((element) => {
+			webCV.image.push({
+				filename: element.filename.replace(/ /g, ""),
+				path: element.path.replace(/ /g, ""),
+				ori: element.originalname,
+			});
+		});
+
+		await webCV
+			.save()
+			.then(() => console.log("saved to db"))
+			.catch((err) => console.log("error masa save"));
+		const id = "/webCV/" + req.params.orderId + "/" + req.params.templateName;
+		res.redirect(id);
+	}
+);
+
+router.get("/:orderId/:templateName/image", (req, res) => {
+	res.send("image and port");
 });
 
 router.post("/:orderId/:templateName", async (req, res) => {
@@ -290,119 +342,57 @@ router.post("/:orderId/:templateName", async (req, res) => {
 		.save()
 		.then(() => console.log("saved to db"))
 		.catch((err) => console.log("error masa save"));
-	res.send("done");
+
+	if (req.params.orderId.slice(-1) === "1") {
+		res.render("webCV/submitImage", {
+			h4: "Upload images and file related to your portfolio",
+			id:
+				"/webCV/" +
+				req.params.orderId +
+				"/" +
+				req.params.templateName +
+				"/image",
+		});
+	} else if (req.params.orderId.slice(-1) === "0") {
+		res.render("webCV/submitImage", {
+			h4: "Upload images",
+			id:
+				"/webCV/" +
+				req.params.orderId +
+				"/" +
+				req.params.templateName +
+				"/image",
+		});
+	}
 });
-// router.get("/:name", async (req, res) => {
-// 	const zikir = await Zikir.find({ name: req.params.name });
-// 	if (zikir.length == 0) {
-// 		const nzikir = new Zikir({
-// 			name: req.params.name,
-// 		});
 
-// 		try {
-// 			const result = await nzikir.save();
-// 			console.log(result);
-// 		} catch (error) {
-// 			console.log(error.errors);
-// 		}
-// 	}
-// 	res.render("zikir/auth", { name: req.params.name, error: false });
-// });
+router.post("/:orderId/:templateName/delete", async (req, res) => {
+	const webCVarray = await WebCV.find({ orderId: req.params.orderId });
+	if (webCVarray.length === 0) {
+		res.redirect("/webCV");
+	}
+	const webCV = webCVarray[0];
+	webCV.image.forEach((element) => {
+		unlinkAsync(__dirname.substring(0, __dirname.length - 6) + element.path);
+	});
 
-// router.post("/:name", async (req, res) => {
-// 	const zikir = await Zikir.find({ name: req.params.name });
-// 	console.log(zikir);
+	const result = await WebCV.deleteOne({ orderId: req.params.orderId });
+	console.log(result);
 
-// 	if (req.body.password == zikir[0].password) {
-// 		res.redirect("/zikir/" + req.params.name + "/counter");
-// 	} else {
-// 		res.render("zikir/auth", {
-// 			name: req.params.name,
-// 			error: "wrong password",
-// 		});
-// 	}
-// });
+	res.render("webCV/dataDeleted");
+});
 
-// router.get("/:name/counter", (req, res) => {
-// 	res.render("zikir/counter", { name: req.params.name });
-// });
+router.get("/admin", (req, res) => {
+	res.render("webCV/getPass", { err: "" });
+});
 
-// router.get("/:name/counter/manual", (req, res) => {
-// 	res.render("zikir/manual", { name: req.params.name });
-// });
-
-// router.get("/:name/data", async (req, res) => {
-// 	const zikir = await Zikir.find({ name: req.params.name }).limit(50);
-// 	console.log(zikir[0].data.reverse());
-// 	res.render("zikir/data", { data: zikir[0].data.reverse() });
-// });
-
-// router.post("/:name/counter", async (req, res) => {
-// 	const zikir = await Zikir.find({ name: req.params.name });
-// 	console.log(zikir);
-// 	var today = new Date();
-// 	console.log(today);
-
-// 	var dd = String(today.getDate()).padStart(2, "0");
-// 	var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-// 	var yyyy = today.getFullYear();
-// 	today = dd + "/" + mm + "/" + yyyy;
-// 	var holder = 0;
-// 	zikir[0].data.forEach((element) => {
-// 		if (element.date === today) {
-// 			run();
-// 			async function run() {
-// 				element.zikirDone =
-// 					parseInt(element.zikirDone) + parseInt(req.body.data);
-// 				const result = await zikir[0].save();
-// 				console.log(result);
-// 				res.status(200).redirect("/zikir/" + req.params.name + "/counter");
-// 			}
-// 		} else {
-// 			holder++;
-// 		}
-// 	});
-
-// 	if (holder === zikir[0].data.length) {
-// 		newData = { date: today, zikirDone: req.body.data };
-// 		zikir[0].data.push(newData);
-// 		const result = await zikir[0].save();
-// 		res.status(200).redirect("/zikir/" + req.params.name + "/counter");
-// 	}
-// });
-
-// router.post("/:name/counter/manual", async (req, res) => {
-// 	const zikir = await Zikir.find({ name: req.params.name });
-// 	console.log(zikir);
-// 	var today = new Date();
-// 	console.log(today);
-
-// 	var dd = String(today.getDate()).padStart(2, "0");
-// 	var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-// 	var yyyy = today.getFullYear();
-// 	today = dd + "/" + mm + "/" + yyyy;
-// 	var holder = 0;
-// 	zikir[0].data.forEach((element) => {
-// 		if (element.date === today) {
-// 			run();
-// 			async function run() {
-// 				element.zikirDone =
-// 					parseInt(element.zikirDone) + parseInt(req.body.data);
-// 				const result = await zikir[0].save();
-// 				console.log(result);
-// 				res.status(200).redirect("/zikir/" + req.params.name + "/counter");
-// 			}
-// 		} else {
-// 			holder++;
-// 		}
-// 	});
-
-// 	if (holder === zikir[0].data.length) {
-// 		newData = { date: today, zikirDone: req.body.data };
-// 		zikir[0].data.push(newData);
-// 		const result = await zikir[0].save();
-// 		console.log(result);
-// 	}
-// });
+router.post("/admin", async (req, res) => {
+	if (req.body.auth === process.env.PASS) {
+		const webCV = await WebCV.find();
+		res.render("webCV/orderList", { data: webCV });
+	} else {
+		res.render("webCV/getPass", { err: "wrong password" });
+	}
+});
 
 module.exports = router;

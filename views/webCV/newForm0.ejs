@@ -10,7 +10,6 @@
 </head>
 
 <body>
-  <% console.log(data) %>
   <div>
     <form action=<%= id %> method="post">
       <div class="container">
@@ -19,11 +18,10 @@
           <div class="email">
 
             <label>Name</label>
-            <h3><%= JSON.stringify(data)  %></h3>
-            <input value=name="name" type="text">
+            <input id="name" name="name" type="text">
             <br>
             <label for="">Date of Birth (dd/mm/yyyy)</label>
-            <input name="DOB" value=<%- data.basic.DOB %> type="text">
+            <input name="DOB" type="text">
             <br>
             <label for="">Adress</label>
             <input name="adress" type="text">
@@ -87,7 +85,6 @@
         <span class="slider round"></span>
       </label>
       <div class="container">
-
         <div style="display: none;" id="exp">
           <div class="container3">
             <h2>Experience</h2>
@@ -132,7 +129,7 @@
         </div>
       </div>
 
-      <label class="switch">
+      <!-- <label class="switch">
         <p class="slider-label">Portfolio</p>
         <input onclick=mf("port") type="checkbox">
         <span class="slider round"></span>
@@ -155,7 +152,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
 
       <label class="switch">
@@ -200,6 +197,10 @@
             <input name="twitter" type="text"><br>
             <label for="">Instagram</label>
             <input name="insta" type="text"><br>
+            <label for="">LinkedIn</label>
+            <input name="linkedin" type="text"><br>
+            <label for="">Github</label>
+            <input name="github" type="text"><br>
           </div>
         </div>
       </div>
@@ -258,7 +259,7 @@
           </div>
         </div>
       </div>
-      <button type="submit">Update</button>
+      <button class="bottom" type="submit">Submit</button>
     </form>
 
 

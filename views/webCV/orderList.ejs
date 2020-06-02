@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+  <title>Order List</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <% data.forEach(element => { %>
+
+      <div class="col-lg-4 col-md-6 col-sm-12 p-3">
+        <div class="  border-2 border border-primary p-3">
+
+          <h5>Order ID: <%= element.orderId %></h5>
+          <h5>Template: <%= element.templateName %></h5>
+          <label class="data-lebel">Name: </label>
+          <p><%= element.data.basic.name %> </p>
+          <br>
+          <label class="data-lebel" for="">Date of Birth: </label>
+          <p><%= element.data.basic.DOB %> </p>
+          <br>
+          <label class="data-lebel" for="">Adress: </label>
+          <p><%= element.data.basic.adress %> </p>
+          <br>
+          <label class="data-lebel" for="">Phone number: </label>
+          <p><%= element.data.basic.phone %> </p>
+          <br>
+          <label class="data-lebel" for="">Email: </label>
+          <p><%= element.data.basic.email %> </p>
+        </div>
+        <a href="/webCV/<%= element.orderId %>/<%= element.templateName %>">Details</a>
+
+
+      </div>
+      <% }) %>
+
+
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
